@@ -1,5 +1,5 @@
  Bacteria [] cell;
- int setupSize = setupSize;
+ int setupSize = 400;
  //declare bacteria variables here   
  void setup()   
  {   
@@ -18,7 +18,7 @@
  }  //initialize bacteria variables here      
  void draw()   
  {    
-   background(0,0,0,50);
+   background(0,0,0);
    for(int a = 0;a < cell.length;a++)
    {
      cell[a].show();
