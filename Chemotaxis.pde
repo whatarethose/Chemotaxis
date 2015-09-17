@@ -38,7 +38,7 @@
    }  
    void show()
    {
-     fill(0);//empty in center
+     fill(bacColor);//empty in center
      stroke(bacColor);//outline
      ellipse(bacX,bacY,bacSize,bacSize);//drawn
    }
