@@ -1,10 +1,10 @@
  Bacteria [] cell;
- int setupSize = 400;
+ int setupSize = 600;
  //declare bacteria variables here   
  void setup()   
  {   
    frameRate(30);
-   cell = new Bacteria [20];  
+   cell = new Bacteria [40];  
    for(int x= 0;x<cell.length;x++)
    {//use local variables to shorten the length
      int xPos=(int)(Math.random()*setupSize);
@@ -18,7 +18,8 @@
  }  //initialize bacteria variables here      
  void draw()   
  {    
-   background(0,0,0);
+   fill(0,0,0,100);
+   rect(-1,-1,setupSize,setupSize);
    for(int a = 0;a < cell.length;a++)
    {
      cell[a].show();
@@ -44,50 +45,25 @@
    }
    void move()
    {
-     int direction = (int)(Math.random()*4);//will only go in 1 direction at a time
-     if (direction == 0)//right
-     {
-       if(bacX>mouseX)
-       {//if the x is more right than mouse, more biased to left
-         bacX=bacX+((int)(Math.random()*6)+1);///1,2,6
-       }
-       else
-       {//if x is more left than mouse.biased right
-         bacX=bacX+((int)(Math.random()*10)+1);///1,2,6,4,10
-       }
-     }
-     else if(direction ==1)//left
-     {
-       if(bacX>mouseX)//if x is greater than mouseX,biased left
-       {
-         bacX=bacX-((int)(Math.random()*10)+1);//0,1,2,6,4
-       }
-       else//if x is less than mouse X,biased right
-       {
-         bacX=bacX-((int)(Math.random()*6)+1);//1,2,6
-       }
-     }
-     else if(direction ==2)//up
-     {
-       if(bacY >mouseY)//if y is greater than mouse Y, biased down
-       {
-         bacY=bacY+((int)(Math.random()*6)+1);//1,2,6
-       }
-       else//if y is less than mouse Y, biased up
-       {
-         bacY=bacY+((int)(Math.random()*10)+1);//1,2,6,4,10
-       }
-     }
-     else //down
-     {
-       if(bacY>mouseY)//if y is greater than mouseY, biased down
-       {
-         bacY=bacY-((int)(Math.random()*10)+1);//1,2,6,4,10
-       }
-       else//if y is less than mouse Y.biased up
-       {
-         bacY=bacY-((int)(Math.random()*6)+1);//1,2,3
-       }
-     }
-   }
- }    
+    	if(mouseX>bacX) 
+    {
+      bacX = bacX +  (int)(Math.random()*10)-1;
+    }
+
+    if(mouseX<bacX) 
+    {
+      bacX = bacX +  (int)(Math.random()*10)-9;
+    }
+
+    if(mouseY>bacY) 
+    {
+      bacY = bacY +  (int)(Math.random()*10)-1;
+    }
+
+    if(mouseY<bacY) 
+    {
+      bacY = bacY +  (int)(Math.random()*10)-9;
+    }
+
+   }   
+}
