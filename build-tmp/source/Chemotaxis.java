@@ -52,6 +52,8 @@ public class Chemotaxis extends PApplet {
      bacY=y;
      bacSize=size;
      bacColor = myColor;
+     int start = 5;
+     int end =5;
    }  
    public void show()
    {
@@ -61,24 +63,24 @@ public class Chemotaxis extends PApplet {
    }
    public void move()
    {
-    	if(mouseX>bacX) 
+    if(mouseX>bacX) 
     {
-      bacX = bacX +  (int)(Math.random()*10)-1;
+      	bacX = bacX +  (int)(Math.random()*10)-1;
     }
 
     if(mouseX<bacX) 
     {
-      bacX = bacX +  (int)(Math.random()*10)-9;
+      	bacX = bacX +  (int)(Math.random()*10)-9;
     }
 
     if(mouseY>bacY) 
     {
-      bacY = bacY +  (int)(Math.random()*10)-1;
+      	bacY = bacY +  (int)(Math.random()*10)-1;
     }
 
     if(mouseY<bacY) 
     {
-      bacY = bacY +  (int)(Math.random()*10)-9;
+      	bacY = bacY +  (int)(Math.random()*10)-9;
     }
 
    }   

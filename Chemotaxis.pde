@@ -36,6 +36,9 @@
      bacY=y;
      bacSize=size;
      bacColor = myColor;
+     int start = 5;
+     int end =5;
+     int direction = (int)(Math.random()*4);
    }  
    void show()
    {
@@ -45,25 +48,43 @@
    }
    void move()
    {
-    	if(mouseX>bacX) 
-    {
-      bacX = bacX +  (int)(Math.random()*10)-1;
-    }
+   		if(start == end)
+   		{
+   			reset();
+   		}
+   		else
+   		{
+   			if(direction == 0)
+   			{
+   				if(bacX >setupSize)
+   				{
+   					
+   				}
+   			}
+   		}
+   //  if(mouseX>bacX) 
+   //  {
+   //    	bacX = bacX +  (int)(Math.random()*10)-1;
+   //  }
 
-    if(mouseX<bacX) 
-    {
-      bacX = bacX +  (int)(Math.random()*10)-9;
-    }
+   //  if(mouseX<bacX) 
+   //  {
+   //    	bacX = bacX +  (int)(Math.random()*10)-9;
+   //  }
 
-    if(mouseY>bacY) 
-    {
-      bacY = bacY +  (int)(Math.random()*10)-1;
-    }
+   //  if(mouseY>bacY) 
+   //  {
+   //    	bacY = bacY +  (int)(Math.random()*10)-1;
+   //  }
 
-    if(mouseY<bacY) 
-    {
-      bacY = bacY +  (int)(Math.random()*10)-9;
-    }
+   //  if(mouseY<bacY) 
+   //  {
+   //    	bacY = bacY +  (int)(Math.random()*10)-9;
+   //  }
 
-   }   
+	} 
+	void reset(){
+		start =0;
+		direction = (int)(Math.random()*4);
+	}  
 }
