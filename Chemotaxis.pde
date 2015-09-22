@@ -4,7 +4,7 @@
  void setup()   
  {   
    frameRate(30);
-   cell = new Bacteria [40];  
+   cell = new Bacteria [1];  
    for(int x= 0;x<cell.length;x++)
    {//use local variables to shorten the length
      int xPos=(int)(Math.random()*setupSize);
@@ -28,17 +28,17 @@
    //move and show the bacteria   
  }  
  class Bacteria    
- {     
-   int bacX,bacY,bacColor,bacSize;
+ {   
+   int bacX,bacY,bacColor,bacSize,direction,start,end;
    Bacteria(int x,int y,int size,int myColor)
    {
      bacX=x;
      bacY=y;
      bacSize=size;
      bacColor = myColor;
-     int start = 5;
-     int end =5;
-     int direction = (int)(Math.random()*4);
+     start =5;
+     end =5;
+     direction = (int)(Math.random()*4);
    }  
    void show()
    {
@@ -48,43 +48,68 @@
    }
    void move()
    {
-   		if(start == end)
+   		if(start >= end)
    		{
-   			reset();
+   			reset(5);
    		}
    		else
    		{
    			if(direction == 0)
-   			{
-   				if(bacX >setupSize)
+   			{ 
+   				if(bacX>setupSize)
    				{
-   					
+   					bacX = setupSize;
+   					reset(0);
+   				}
+   				else 
+   				{
+   				bacX+=10;
    				}
    			}
+   			else if (direction == 1)
+   			{
+   				if(bacX <setupSize)
+   				{
+   					reset(1);
+   					bacX=0;
+   				}
+   				else
+   				{
+   				bacX-=10;
+   				}
+   			}
+   			else if(direction ==2)
+   			{
+   				if(bacY>setupSize)
+   				{
+   					reset(2);
+   					bacY = setupSize;
+   				}
+   				else
+   				{
+   				bacY+=10;
+   				}	
+   			}
+   			else 
+   			{
+   				if(bacY<setupSize)
+   				{
+   					reset(3);
+   					bacY=0;
+   				}
+   				else
+   				{
+   				bacY-=10;
+   				}	
+   			}
+   			start+=(int)(Math.random()*2);
    		}
-   //  if(mouseX>bacX) 
-   //  {
-   //    	bacX = bacX +  (int)(Math.random()*10)-1;
-   //  }
-
-   //  if(mouseX<bacX) 
-   //  {
-   //    	bacX = bacX +  (int)(Math.random()*10)-9;
-   //  }
-
-   //  if(mouseY>bacY) 
-   //  {
-   //    	bacY = bacY +  (int)(Math.random()*10)-1;
-   //  }
-
-   //  if(mouseY<bacY) 
-   //  {
-   //    	bacY = bacY +  (int)(Math.random()*10)-9;
-   //  }
-
 	} 
-	void reset(){
+	void reset(int exception){
 		start =0;
-		direction = (int)(Math.random()*4);
+		while (direction == exception)
+		{
+			direction = (int)(Math.random()*4);
+		}
 	}  
 }
