@@ -7,19 +7,19 @@
    cell = new Bacteria [1];  
    for(int x= 0;x<cell.length;x++)
    {//use local variables to shorten the length
-     int xPos=(int)(Math.random()*setupSize);
-     int yPos= (int)(Math.random()*setupSize);
+     int xPos=(int)(Math.random()*600);
+     int yPos= (int)(Math.random()*600);
      int big = ((int)(Math.random()*20))+5;
      cell[x]= new Bacteria(xPos,yPos,big,color((int)(Math.random()*255),
      (int)(Math.random()*255),
     (int)(Math.random()*255)));
    }
-   size(setupSize,setupSize);
+   size(600,600);
  }  //initialize bacteria variables here      
  void draw()   
  {    
    fill(0,0,0,100);
-   rect(-1,-1,setupSize,setupSize);
+   rect(-1,-1,600,600);
    for(int a = 0;a < cell.length;a++)
    {
      cell[a].show();
@@ -30,19 +30,19 @@
  class Bacteria    
  {   
    int bacX,bacY,bacColor,bacSize,direction,start,end;
-   Bacteria(int x,int y,int size,int myColor)
+   Bacteria(int x,int y,int big,int myColor)
    {
      bacX=x;
      bacY=y;
-     bacSize=size;
+     bacSize=big;
      bacColor = myColor;
-     start =5;
-     end =5;
-     direction = (int)(Math.random()*4);
+     start =10;
+     end =10;
+     direction = (int)(Math.random()*10);
    }  
    void show()
    {
-     fill(bacColor);//empty in center
+     fill(0);//empty in center
      stroke(bacColor);//outline
      ellipse(bacX,bacY,bacSize,bacSize);//drawn
    }
@@ -50,66 +50,64 @@
    {
    		if(start >= end)
    		{
-   			reset(5);
+   			reset();
    		}
    		else
    		{
    			if(direction == 0)
    			{ 
-   				if(bacX>setupSize)
+   				if(bacX>=setupSize)
    				{
+   					reset();
    					bacX = setupSize;
-   					reset(0);
    				}
    				else 
    				{
-   				bacX+=10;
+   				bacX= bacX+5;
    				}
    			}
-   			else if (direction == 1)
+   			else if (direction >=1 && direction <=4)
    			{
-   				if(bacX <setupSize)
+   				if(bacX<=setupSize)
    				{
-   					reset(1);
-   					bacX=0;
+   					reset();
+   					//bacX=0;
    				}
    				else
    				{
-   				bacX-=10;
+   				bacX=bacX-5;
    				}
    			}
-   			else if(direction ==2)
+   			else if(direction ==5)
    			{
-   				if(bacY>setupSize)
+   				if(bacY>=setupSize)
    				{
-   					reset(2);
+   					reset();
    					bacY = setupSize;
    				}
    				else
    				{
-   				bacY+=10;
+   				bacY=bacY+5;
    				}	
    			}
    			else 
    			{
    				if(bacY<setupSize)
    				{
-   					reset(3);
-   					bacY=0;
+   					reset();
+   					//bacY=0;
    				}
    				else
    				{
-   				bacY-=10;
+   				bacY=bacY-5;
    				}	
    			}
-   			start+=(int)(Math.random()*2);
+   			start++;
+   			System.out.print(direction);
    		}
 	} 
-	void reset(int exception){
+	void reset(){
 		start =0;
-		while (direction == exception)
-		{
-			direction = (int)(Math.random()*4);
-		}
+		direction =(int)(Math.random()*10);
 	}  
 }
