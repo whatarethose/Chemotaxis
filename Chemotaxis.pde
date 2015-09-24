@@ -1,4 +1,4 @@
-Bacteria [] cell;
+ Bacteria [] cell;
  int setupSize = 600;
  player user = new player((setupSize/2),(setupSize/2),10);
  //declare bacteria variables here   
@@ -6,7 +6,7 @@ Bacteria [] cell;
  { 
    size(600,600);
    frameRate(30);
-   cell = new Bacteria [35];  
+   cell = new Bacteria [40];  
    for(int x= 0;x<cell.length;x++)
    {//use local variables to shorten the length
      int xPos=(int)(Math.random()*600);
@@ -15,19 +15,22 @@ Bacteria [] cell;
      cell[x]= new Bacteria(xPos,yPos,big,color((int)(Math.random()*255),
      (int)(Math.random()*255),
     (int)(Math.random()*255)));
-   }
+ 	}
  }  //initialize bacteria variables here      
  void draw()   
- {    
-   fill(0,0,0,100);
-   rect(-1,-1,600,600);
+ {  
+ 	System.out.print(user.alive);
+ 	background(0); 
+ 	user.move();
+    user.show();
+   //fill(0,0,0,100);
+   //rect(-1,-1,600,600);
    for(int a = 0;a < cell.length;a++)
    {
      cell[a].show();
      cell[a].move();
    }
-   user.show();
-   user.move();
+   user.check();
    //move and show the bacteria   
  }  
  class Bacteria    
@@ -128,7 +131,7 @@ class player
  }
  void show()
  {
-   if(timer > best)
+   if(timer > best)//make new best if timer is greater
    {
      best= timer;
    }
@@ -136,7 +139,13 @@ class player
    fill(255);
    text("SCORE :"+timer,500,10);
    text("BEST :"+best,400,10);
-   if(get(myX,myY) != color(0,0,0))
+   stroke(255,0,0);
+   fill(255,0,0);
+   rect(myX,myY,10,10);//make the rect
+ }
+ void check()
+ {
+ 	if(get(myX,myY) != color(255,0,0))//check if the color isnt red
    {
     alive = false;
    }
@@ -146,13 +155,11 @@ class player
    }
    else
    {
-     timer=0;
-     //myX= setupSize/2;
-     //myY= setupSize/2;
+     timer=0;//resets everything if dead
+     myX= setupSize/2;
+     myY= setupSize/2;
+     alive = true;
    }
-   stroke(255,0,0);
-   fill(255,0,0);
-   rect(myX,myY,10,10);
  }
  void move()
  {
