@@ -4,7 +4,7 @@
  void setup()   
  {   
    frameRate(30);
-   cell = new Bacteria [1];  
+   cell = new Bacteria [30];  
    for(int x= 0;x<cell.length;x++)
    {//use local variables to shorten the length
      int xPos=(int)(Math.random()*600);
@@ -38,7 +38,7 @@
      bacColor = myColor;
      start =10;
      end =10;
-     direction = (int)(Math.random()*10);
+     direction = (int)(Math.random()*4);
    }  
    void show()
    {
@@ -48,66 +48,65 @@
    }
    void move()
    {
-   		if(start >= end)
-   		{
-   			reset();
-   		}
-   		else
-   		{
-   			if(direction == 0)
-   			{ 
-   				if(bacX>=setupSize)
-   				{
-   					reset();
-   					bacX = setupSize;
-   				}
-   				else 
-   				{
-   				bacX= bacX+5;
-   				}
-   			}
-   			else if (direction >=1 && direction <=4)
-   			{
-   				if(bacX<=setupSize)
-   				{
-   					reset();
-   					//bacX=0;
-   				}
-   				else
-   				{
-   				bacX=bacX-5;
-   				}
-   			}
-   			else if(direction ==5)
-   			{
-   				if(bacY>=setupSize)
-   				{
-   					reset();
-   					bacY = setupSize;
-   				}
-   				else
-   				{
-   				bacY=bacY+5;
-   				}	
-   			}
-   			else 
-   			{
-   				if(bacY<setupSize)
-   				{
-   					reset();
-   					//bacY=0;
-   				}
-   				else
-   				{
-   				bacY=bacY-5;
-   				}	
-   			}
-   			start++;
-   			System.out.print(direction);
-   		}
-	} 
-	void reset(){
-		start =0;
-		direction =(int)(Math.random()*10);
-	}  
+       if(start >= end)
+       {
+         reset();
+       }
+       else
+       {
+         if(direction == 0)
+         { 
+           if(bacX>=setupSize)
+           {
+             reset();
+             bacX = setupSize;
+           }
+           else 
+           {
+           bacX+=5;
+           }
+         }
+         else if (direction ==1)
+         {
+           if(bacX<=0)
+           {
+             reset();
+             bacX=0;
+           }
+           else
+           {
+           bacX-=5;
+           }
+         }
+         else if(direction ==2)
+         {
+           if(bacY>=setupSize)
+           {
+             reset();
+            bacY = setupSize;
+          }
+           else
+           {
+           bacY+=5;
+           }  
+         }
+         else 
+         {
+           if(bacY<0)
+           {
+             reset();
+             bacY=0;
+           }
+           else
+          {
+           bacY-=5;
+           }  
+         }
+         start=start+(int)(Math.random()*3);
+       }
+  } 
+  void reset(){
+    start =0;
+    direction =(int)(Math.random()*4);
+  }  
 }
