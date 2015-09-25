@@ -22,25 +22,23 @@ public class Chemotaxis extends PApplet {
  { 
    size(600,600);
    frameRate(30);
-   cell = new Bacteria [40];  
+   cell = new Bacteria [50];  
    for(int x= 0;x<cell.length;x++)
    {//use local variables to shorten the length
      int xPos=(int)(Math.random()*600);
      int yPos= (int)(Math.random()*600);
-     int big = ((int)(Math.random()*20))+5;
+     int big = ((int)(Math.random()*20))+7;
      cell[x]= new Bacteria(xPos,yPos,big,color((int)(Math.random()*255),
      (int)(Math.random()*255),
     (int)(Math.random()*255)));
- 	}
+   }
  }  //initialize bacteria variables here      
  public void draw()   
- {  
- 	System.out.print(user.alive);
- 	background(0); 
- 	user.move();
-    user.show();
-   //fill(0,0,0,100);
-   //rect(-1,-1,600,600);
+ {   
+   fill(0,0,0,100);
+   rect(-1,-1,600,600);
+   user.move();
+   user.show();
    for(int a = 0;a < cell.length;a++)
    {
      cell[a].show();
@@ -153,6 +151,7 @@ class player
    }
    timer+=1;
    fill(255);
+   textSize(10);
    text("SCORE :"+timer,500,10);
    text("BEST :"+best,400,10);
    stroke(255,0,0);
@@ -161,7 +160,7 @@ class player
  }
  public void check()
  {
- 	if(get(myX,myY) != color(255,0,0))//check if the color isnt red
+   if(get(myX,myY) != color(255,0,0))//check if the color isnt red
    {
     alive = false;
    }
@@ -174,7 +173,16 @@ class player
      timer=0;//resets everything if dead
      myX= setupSize/2;
      myY= setupSize/2;
+     fill(255);
+     textSize(20);
+     text("You died, Press any key to start again",setupSize/4,setupSize/2);
+     if(keyPressed == true)
+     {
      alive = true;
+     }
+     else
+     {
+     }
    }
  }
  public void move()
